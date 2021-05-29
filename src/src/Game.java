@@ -44,6 +44,8 @@ public class Game extends JFrame {
             }
         }).start();
     }
+    public void exitWindow() {
 
+    }
 
 }
