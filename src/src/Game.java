@@ -1,10 +1,16 @@
 package src;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class Game extends JFrame {
+
+    //ToDo:**1)calss of Allianes.
+    //       2)SpaceShip Drawing
+    //       3)Make A Start Butten $
+    // **
+
 
     private Spaceship player;
 
@@ -20,10 +26,18 @@ public class Game extends JFrame {
         this.setLayout(null);
         this.setTitle("Game");
         this.setResizable(false);
-        this.player=new Spaceship();
+        this.player = new Spaceship();
+        this.enemy = new Spaceship();
+        this.fillEmptyArea=new FillEmptyArea(500,360,30,30);
         PlayerMovement playerMovement = new PlayerMovement(this.player);
+        EnemyMovement enemyMovement = new EnemyMovement(this.enemy);
         this.addKeyListener(playerMovement);
         mainGameLoop();
+        optionPaneExample();
+        //enemy = ImageIO.read(getClass().getResource("airX.jpg"));
+
+
+
 
 
     }
@@ -32,7 +46,9 @@ public class Game extends JFrame {
         super.paint(g);
         this.player.paint(g);
     }
-    public void mainGameLoop () {
+
+    public void mainGameLoop() {
+        JLabel title = new JLabel();
         new Thread(() -> {
             while (true) {
                 repaint();
@@ -48,4 +64,5 @@ public class Game extends JFrame {
 
     }
 
+    }
 }

@@ -16,29 +16,41 @@ public class PlayerMovement implements KeyListener {
 
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        switch (keyCode) {
-            case KeyEvent.VK_RIGHT:
-                this.player.move(1);
-                break;
-            case KeyEvent.VK_LEFT:
-                this.player.move(2);
-                break;
-            case KeyEvent.VK_UP:
-                this.player.move(3);
-                break;
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int keyCode = e.getKeyCode();
+            switch (keyCode) {
+                case KeyEvent.VK_RIGHT:
+                    if (this.player.getBody().getX()<Constants.WINDOW_WIDTH-Constants.SPACESHIP_WIDTH){
+                        this.player.move(Constants.MOVE_RIGHT);
+                    }
 
-            case KeyEvent.VK_DOWN:
-                this.player.move(4);
+                  //  this.enemy.move(Constants.MOVE_RIGHT);
+                    break;
+                case KeyEvent.VK_LEFT:
+                    if (this.player.getBody().getX()>=Constants.END_FRAME){
+                        this.player.move(Constants.MOVE_LEFT);
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if (this.player.getBody().getY()-Constants.SPACESHIP_HEIGHT>=Constants.END_FRAME)
+                    this.player.move(Constants.MOVE_UP);
+
+                    break;
+
+                case KeyEvent.VK_DOWN:
+                    if(this.player.getBody().getY()<=Constants.WINDOW_HEIGHT-Constants.SPACESHIP_HEIGHT){
+                        this.player.move(Constants.MOVE_DOWN);
+                    }
+                    break;
+                    //this.enemy.move(Constants.MOVE_DOWN);
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
         }
 
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-
-    }
-}

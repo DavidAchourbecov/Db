@@ -1,6 +1,8 @@
 package src;
 
 import java.awt.*;
+import javax.swing.*;
+
 
 public class Spaceship implements Paintable {
 
